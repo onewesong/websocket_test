@@ -6,12 +6,13 @@ import asyncio
 import websockets
 
 async def echo(websocket, path):
-    recv = await websocket.recv()
-    print(f"< {recv}")
+    while True:
+        recv = await websocket.recv()
+        print(f"< {repr(recv)}")
 
-    resp = recv
-    await websocket.send(resp)
-    print(f"> {resp}")
+        resp = recv
+        await websocket.send(resp)
+        print(f"> {repr(resp)}")
 
 start_server = websockets.serve(echo, "localhost", 8765)
 
