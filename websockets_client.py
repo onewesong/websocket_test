@@ -2,11 +2,13 @@
 
 # WS client example
 
+import sys
 import asyncio
 import websockets
 
+uri = sys.argv[1] if len(sys.argv)>1 else "ws://localhost:8765"
+
 async def echo():
-    uri = "ws://localhost:8765"
     async with websockets.connect(uri) as websocket:
         ipt = input("input msg: ")
 
